@@ -1,0 +1,7 @@
+services:
+  dns-updater:
+    # Uncomment this to use an image instead of building locally
+    # image: your-image-tag
+    # Uncomment this to build locally
+    build: .
+    
