@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ## Configuration
 
-Edit the `update_dns.py` script and replace the placeholders for `API_KEY`, `EMAIL`, and the `DOMAINS_TO_UPDATE` list with your actual data.
+Edit the .env file with your actual data to configure the script, or if you don't want to use environment variables change the `update_dns.py` script, set `USE_ENV` to False and replace the placeholders for `API_KEY`, `EMAIL`, and the `DOMAINS_TO_UPDATE` list as shown below.
 
 Example configuration:
 ```
@@ -77,6 +77,10 @@ docker run -d --name dns-updater --restart unless-stopped dns-updater
 ```
 
 This will run the container in detached mode and ensure it starts automatically when the server restarts, unless you explicitly stop it.
+
+### Docker Compose
+You could also use docker-compose to build the project, with a local image or by pulling an external image. (modify to docker-compose.yml if you want to pull from an external image). The script in the container will use the code configuration or the environment variables, depending on whether the script is configured to use environment variables.
+To build and run the image as a container run `docker compose up` (or `docker compose up -d` to run it detached as a background process).
 
 ## Tutorial
 [Here](https://blog.devgenius.io/dns-updater-a-solution-for-managing-dynamic-ips-with-cloudflare-31be2f85d9fb) is a guide that shows you how to get the API Keys on cloudflare and how to set up this tool.

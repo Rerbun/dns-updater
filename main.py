@@ -20,60 +20,51 @@ import socket
 import logging
 import sys
 
+# Set this to False if you want to modify the below variables
+USE_ENV = True
 # Replace with your actual data
-# Remove the line to get from environment variables
-# API_KEY = 'your_cloudflare_api_key'
-# EMAIL = 'your_email'
+API_KEY = 'your_cloudflare_api_key'
+EMAIL = 'your_email'
 
 # Define API endpoints
-# Remove the line to get from environment variables
-# BASE_URL = 'https://api.cloudflare.com/client/v4/'
+BASE_URL = 'https://api.cloudflare.com/client/v4/'
 
 # List of IP checking services
-# Remove the line to get from environment variables
-# IP_CHECK_SERVICES = [
-#    'https://adresameaip.ro/ip',
-#    'https://api.ipify.org',
-#    'https://icanhazip.com',
-#    'https://ipinfo.io/ip'
-#]
+IP_CHECK_SERVICES = [
+    'https://adresameaip.ro/ip',
+    'https://api.ipify.org',
+    'https://icanhazip.com',
+    'https://ipinfo.io/ip'
+]
 
 # List of zones and domains to update
-# Remove the line to get from environment variables
-# DOMAINS_TO_UPDATE = [
-#    {
-#        'zone_id': 'zone_id_1',
-#        'domain': #'subdomain1.mgedev.com',
-#        'proxied': True
-#    },
-#    {
-#        'zone_id': 'zone_id_1',
-#        'domain': #'subdomain2.mgedev.com',
-#        'proxied': False
-#    },
-#    {
-#        'zone_id': 'zone_id_2',
-#        'domain': #'subdomain1.mgesoftware.com',
-#        'proxied': True
-#    }
-#]
+DOMAINS_TO_UPDATE = [
+   {
+       'zone_id': 'zone_id_1',
+       'domain': 'subdomain1.mgedev.com',
+       'proxied': True
+   },
+   {
+       'zone_id': 'zone_id_1',
+       'domain': 'subdomain2.mgedev.com',
+       'proxied': False
+   },
+   {
+       'zone_id': 'zone_id_2',
+       'domain': 'subdomain1.mgesoftware.com',
+       'proxied': True
+   }
+]
 
-# Remove this line to no longer use environment variables
-API_KEY = os.environ.get('API_KEY', '')
-# Remove this line to no longer use environment variables
-EMAIL = os.environ.get('EMAIL', '')
-# Remove this line to no longer use environment variables
-BASE_URL = os.environ.get('BASE_URL', '')
-# Remove this line to no longer use environment variables
-IP_CHECK_SERVICES = os.environ.get('IP_SERVICES_LIST', '').split(',')
-# Remove this line to no longer use environment variables
-DOMAIN_ZONE_LIST = os.environ.get('DOMAIN_ZONE_LIST', '').split(',')
-# Remove this line to no longer use environment variables
-DOMAIN_PROXY_LIST = list(map(lambda entry: entry.upper() == 'TRUE', os.environ.get('DOMAIN_PROXY_LIST', '').split(',')))
-# Remove this line to no longer use environment variables
-DOMAIN_LIST = os.environ.get('DOMAIN_LIST', '').split(',')
-# Remove this line to no longer use environment variables
-DOMAINS_TO_UPDATE = [{ 'domain': domain, 'zone_id': DOMAIN_ZONE_LIST[DOMAIN_LIST.index(domain)], 'proxied': DOMAIN_PROXY_LIST[DOMAIN_LIST.index(domain)] } for domain in DOMAIN_LIST ]
+if USE_ENV:
+  API_KEY = os.environ.get('API_KEY', '')
+  EMAIL = os.environ.get('EMAIL', '')
+  BASE_URL = os.environ.get('BASE_URL', '')
+  IP_CHECK_SERVICES = os.environ.get('IP_SERVICES_LIST', '').split(',')
+  DOMAIN_ZONE_LIST = os.environ.get('DOMAIN_ZONE_LIST', '').split(',')
+  DOMAIN_PROXY_LIST = list(map(lambda entry: entry.upper() == 'TRUE', os.environ.get('DOMAIN_PROXY_LIST', '').split(',')))
+  DOMAIN_LIST = os.environ.get('DOMAIN_LIST', '').split(',')
+  DOMAINS_TO_UPDATE = [{ 'domain': domain, 'zone_id': DOMAIN_ZONE_LIST[DOMAIN_LIST.index(domain)], 'proxied': DOMAIN_PROXY_LIST[DOMAIN_LIST.index(domain)] } for domain in DOMAIN_LIST]
 
 def create_logger(level=logging.INFO):
     """ Create the logger object """
