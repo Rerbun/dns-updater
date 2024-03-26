@@ -39,21 +39,21 @@ IP_CHECK_SERVICES = [
 
 # List of zones and domains to update
 DOMAINS_TO_UPDATE = [
-   {
-       'zone_id': 'zone_id_1',
-       'domain': 'subdomain1.mgedev.com',
-       'proxied': True
-   },
-   {
-       'zone_id': 'zone_id_1',
-       'domain': 'subdomain2.mgedev.com',
-       'proxied': False
-   },
-   {
-       'zone_id': 'zone_id_2',
-       'domain': 'subdomain1.mgesoftware.com',
-       'proxied': True
-   }
+    {
+        'zone_id': 'zone_id_1',
+        'domain': 'subdomain1.mgedev.com',
+        'proxied': True
+    },
+    {
+        'zone_id': 'zone_id_1',
+        'domain': 'subdomain2.mgedev.com',
+        'proxied': False
+    },
+    {
+        'zone_id': 'zone_id_2',
+        'domain': 'subdomain1.mgesoftware.com',
+        'proxied': True
+    }
 ]
 
 if USE_ENV:
