@@ -4,4 +4,6 @@ services:
     # image: your-image-tag
     # Uncomment this to build locally
     build: .
-    
+    env_file:
+      - .env 
+ 
